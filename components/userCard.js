@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import './userCart.css'
+import './userCard.css'
 
 const axios = require('axios');
 
 
-class UserCart extends Component {
+class UserCard extends Component {
     state = {
         users: [],
         userInfo: [],
-        id: '',
         urlRepo: '',
         allUserRepos: []
     };
@@ -18,56 +17,53 @@ class UserCart extends Component {
             .then(res => {
                 this.setState({
                     users: res.data,
-                    id: res.data[0].id
                 });
-                this.getRepoUrl()
-            }).then(() => {
-            axios.get(this.state.urlRepo, {params: {sort: 'updated'}})
-                .then(res => {
-                    this.setState({
-                        allUserRepos: res
-                    })
+                res.data.forEach(user => {
+                    this.getRepoUrl(user.id)
                 })
-        })
+            })
     }
 
-    getRepoUrl = () => {
+    getRepoUrl = (id) => {
         let url;
         for (let i = 0; i < this.state.users.length; i++) {
-            if (this.state.users[i].id === this.state.id) {
+            if (this.state.users[i].id === id) {
                 url = this.state.users[i].repos_url;
                 this.setState({
                     urlRepo: url
                 })
+                axios.get(this.state.urlRepo, {params: {sort: 'updated'}})
+                    .then(res => {
+                        this.state.users.repos = res
+                    })
             }
         }
     };
 
     render() {
+        // console.log(this.state.users)
+        console.log(this.state.users)
         return (
-            <div className='cart__wrapper'>
+            <div className='card__wrapper'>
                 {this.state.users.length > 0
-                    ? this.state.users.map(cart => {
+                    ? this.state.users.map(card => {
                         return (
                             <div className="main_card">
                                 <div className="main_card-top">
                                     <div className="card_top">
                                         <div className="card_top-left">
-                                            {/*// <!-- <img src="" alt="developer" class="card_img"/></div> -->*/}
-                                            <div src="" alt="developer" className="card_img"></div>
+                                            <img src={card.avatar_url} alt="developer" className="card_img"/>
                                             <span>@github</span>
                                         </div>
                                         <div className="card_top-right">
-                                            <img src="./compas.png" alt="location"/>
+                                            <img src="/image/compas.png" alt="location"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="main_card-bottom">
                                     <div className="cart_bottom-titles">
-                                        {this.state.users.map( user => {
-                                           return user.id
-                                        })}
-                                        <p>123 commits</p>
+                                        <p>{card.login}</p>
+                                        <p>{card.contributions} commits</p>
                                     </div>
                                     <button>VIEW REPOSITORIES</button>
                                 </div>
@@ -80,4 +76,4 @@ class UserCart extends Component {
 }
 
 
-export default UserCart;
+export default UserCard;

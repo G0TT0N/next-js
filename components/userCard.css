@@ -3,16 +3,16 @@
 }
 
 body {
-    margin: 0;
+    margin: 0 auto;
     background-color: #F7F7F7;
-    max-width: 1000px;
+    max-width: 1500px;
     display: flex;
     flex-wrap: wrap;
 
     /*overflow: hidden;*/
 }
 
-.cart__wrapper {
+.card__wrapper {
     display: flex;
     flex-wrap: wrap;
 }
@@ -101,6 +101,7 @@ section {
     height: 40px;
     align-items: flex-start;
     justify-content: flex-end;
+    cursor: pointer;
 
 }
 
