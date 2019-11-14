@@ -8,9 +8,7 @@ const axios = require('axios');
 class UserCard extends Component {
     state = {
         users: [],
-        userInfo: [],
         urlRepo: '',
-        allUserRepos: []
     };
 
     componentDidMount() {
@@ -22,6 +20,7 @@ class UserCard extends Component {
                 res.data.forEach(user => {
                     this.getRepoUrl(user.id)
                 })
+
             })
     }
 
@@ -32,12 +31,13 @@ class UserCard extends Component {
                 url = this.state.users[i].repos_url;
                 this.setState({
                     urlRepo: url
-                })
+                });
                 axios.get(this.state.urlRepo, {params: {sort: 'updated'}})
                     .then(res => {
-                        this.state.users.repos = res
+                        this.state.users[i].allRepos = res.data
                     })
             }
+            this.getLocation(this.state.users[i])
         }
     };
   
@@ -50,8 +50,14 @@ class UserCard extends Component {
   };
   
   
-  render() {
-        // console.log(this.state.users)
+  getLocation = (user) => {
+        axios.get('https://api.github.com/users/' + `${user.login}`)
+            .then(res => {
+                user.location = res.data.location
+            })
+    };
+
+    render() {
         console.log(this.state.users)
         return (
             <div className='card__wrapper'>
