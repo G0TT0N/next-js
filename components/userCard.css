@@ -15,6 +15,7 @@ body {
 .card__wrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 header {

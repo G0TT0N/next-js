@@ -24,13 +24,13 @@
   position: absolute;
 }
 
-.popup_container {
-  width: 600px;
+.popup_container_location {
+  width: 637px;
   height: 600px;
   background-color: white;
   border-radius: 10px;
   /*margin: 0 auto;*/
   padding: 30px;
-  overflow: scroll;
-  overflow-x: hidden;
+  overflow: hidden;
+  position: fixed;
 }

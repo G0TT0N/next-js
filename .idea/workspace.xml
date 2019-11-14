@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ea4eccd-170c-4724-be29-c71c486e3271" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/image/compas.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/userCart.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/userCard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/userCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/userCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Location/location.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Location/location.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Location/location.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Location/location.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ReposList/reposList.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/ReposList/reposList.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/userCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/userCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/userCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/userCard.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +74,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

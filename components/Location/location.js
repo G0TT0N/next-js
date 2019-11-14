@@ -18,12 +18,13 @@ export default class Location extends Component {
     iFrameTest.style.height = "480px";
     document.getElementById("map").appendChild(iFrameTest);
   }
+
   
   render() {
   return (
       <Fragment>
         <div className={"popup"}  onClick={this.props.hideLocation}>
-          <div className={"popup_container"} id={"map"}>
+          <div className={"popup_container_location"} id={"map"}>
             <h1>Location</h1>
             {this.props.location || 'Location is unavailable'}
           </div>

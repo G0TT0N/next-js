@@ -10,10 +10,10 @@ class UserCard extends Component {
     state = {
         users: [],
         urlRepo: '',
-      showModal: false,
-      showLocation: false,
-      username: '',
-      location: '',
+        showModal: false,
+        showLocation: false,
+        username: '',
+        location: '',
     };
 
     componentDidMount() {
@@ -45,30 +45,30 @@ class UserCard extends Component {
             this.getLocation(this.state.users[i])
         }
     };
-  
-  showModal = (name) => {
-    this.setState({ username: name, showModal: true });
-  };
-  
-  hideModal = () => {
-    this.setState({ username: '', showModal: false });
-  };
-  showLocation = (location) => {
-    this.setState({ location: location, showLocation: true });
-  };
-  
-  hideLocation = () => {
-    this.setState({ location: '', showLocation: false });
-  };
-  
-  
-  
-  getLocation = (user) => {
+
+    showModal = (name) => {
+        this.setState({username: name, showModal: true});
+    };
+
+    hideModal = () => {
+        this.setState({username: '', showModal: false});
+    };
+    showLocation = (location) => {
+        this.setState({location: location, showLocation: true});
+    };
+
+    hideLocation = () => {
+        this.setState({location: '', showLocation: false});
+    };
+
+
+    getLocation = (user) => {
         axios.get('https://api.github.com/users/' + `${user.login}`)
             .then(res => {
                 user.location = res.data.location
             })
     };
+
 
     render() {
         // console.log(this.state.users)
@@ -84,7 +84,8 @@ class UserCard extends Component {
                                             <img src={card.avatar_url} alt="developer" className="card_img"/>
                                             <span>@github</span>
                                         </div>
-                                        <div className="card_top-right" onClick={() => this.showLocation(card.location)}>
+                                        <div className="card_top-right"
+                                             onClick={() => this.showLocation(card.location)}>
                                             <img src="/image/compas.png" alt="location"/>
                                         </div>
                                     </div>
@@ -94,17 +95,18 @@ class UserCard extends Component {
                                         <p>{card.login}</p>
                                         <p>{card.contributions} commits</p>
                                     </div>
-                                    <button  onClick={(e) => this.showModal(card.login)}>VIEW REPOSITORIES</button>
+                                    <button onClick={(e) => this.showModal(card.login)}>VIEW REPOSITORIES</button>
                                 </div>
                             </div>
                         )
                     }) : ""}
-              {
-                this.state.showModal && <ReposList hideModal={this.hideModal} username={this.state.username}/>
-              }
-              {
-                this.state.showLocation && <Location hideLocation={this.hideLocation} location={this.state.location}/>
-              }
+                {
+                    this.state.showModal && <ReposList hideModal={this.hideModal} username={this.state.username}/>
+                }
+                {
+                    this.state.showLocation &&
+                    <Location hideLocation={this.hideLocation} location={this.state.location}/>
+                }
             </div>
         );
     }
