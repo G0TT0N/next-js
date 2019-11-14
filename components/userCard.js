@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './userCard.css'
+import ReposList from "./ReposList/reposList";
 
 const axios = require('axios');
 
@@ -39,8 +40,17 @@ class UserCard extends Component {
             this.getLocation(this.state.users[i])
         }
     };
-
-    getLocation = (user) => {
+  
+  showModal = (name) => {
+    this.setState({ username: name, showModal: true });
+  };
+  
+  hideModal = () => {
+    this.setState({ username: '', showModal: false });
+  };
+  
+  
+  getLocation = (user) => {
         axios.get('https://api.github.com/users/' + `${user.login}`)
             .then(res => {
                 user.location = res.data.location
@@ -71,11 +81,14 @@ class UserCard extends Component {
                                         <p>{card.login}</p>
                                         <p>{card.contributions} commits</p>
                                     </div>
-                                    <button>VIEW REPOSITORIES</button>
+                                    <button  onClick={(e) => this.showModal(card.login)}>VIEW REPOSITORIES</button>
                                 </div>
                             </div>
                         )
                     }) : ""}
+              {
+                this.state.showModal && <ReposList hideModal={this.hideModal} username={this.state.username}/>
+              }
             </div>
         );
     }

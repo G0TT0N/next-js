@@ -1,0 +1,36 @@
+.wrapper {
+  background-color: black;
+  opacity: .7;
+  width: 100%;
+  height: 100vh;
+  z-index: 80;
+  position: fixed;
+}
+
+.scroll-off {
+  /*height: 100vh;scroll-off*/
+}
+
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+  left: 0;
+  top: 0;
+  height: 100%;
+  z-index: 90;
+  position: absolute;
+}
+
+.popup_container {
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  border-radius: 10px;
+  /*margin: 0 auto;*/
+  padding: 30px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
