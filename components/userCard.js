@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './userCard.css'
+import ReposList from "./ReposList/reposList";
 
 const axios = require('axios');
 
@@ -39,8 +40,17 @@ class UserCard extends Component {
             }
         }
     };
-
-    render() {
+  
+  showModal = (name) => {
+    this.setState({ username: name, showModal: true });
+  };
+  
+  hideModal = () => {
+    this.setState({ username: '', showModal: false });
+  };
+  
+  
+  render() {
         // console.log(this.state.users)
         console.log(this.state.users)
         return (
@@ -65,11 +75,14 @@ class UserCard extends Component {
                                         <p>{card.login}</p>
                                         <p>{card.contributions} commits</p>
                                     </div>
-                                    <button>VIEW REPOSITORIES</button>
+                                    <button  onClick={(e) => this.showModal(cart.login)}>VIEW REPOSITORIES</button>
                                 </div>
                             </div>
                         )
                     }) : ""}
+              {
+                this.state.showModal && <ReposList hideModal={this.hideModal} username={this.state.username}/>
+              }
             </div>
         );
     }
