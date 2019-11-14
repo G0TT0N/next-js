@@ -81,7 +81,7 @@ class UserCard extends Component {
                                         <p>{card.login}</p>
                                         <p>{card.contributions} commits</p>
                                     </div>
-                                    <button  onClick={(e) => this.showModal(cart.login)}>VIEW REPOSITORIES</button>
+                                    <button  onClick={(e) => this.showModal(card.login)}>VIEW REPOSITORIES</button>
                                 </div>
                             </div>
                         )

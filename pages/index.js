@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import UserCart from "../components/userCart";
+import UserCard from "../components/userCard";
 
 
 
@@ -8,7 +8,7 @@ class Index extends Component {
     render() {
         return (
                 <div>
-                    <UserCart/>
+                    <UserCard/>
                 </div>
         );
     }

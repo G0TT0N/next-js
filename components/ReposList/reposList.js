@@ -2,7 +2,6 @@ import React, { Fragment, Component } from 'react'
 import axios from 'axios';
 import ReposItem from "./reposItem"
 import './reposList.css';
-import UserCart from "../userCart";
 
 
 export default class ReposList extends Component {
@@ -14,7 +13,6 @@ export default class ReposList extends Component {
   componentDidMount() {
     const self = this;
     const username = this.props.username;
-    console.log('----------username', username);
     axios.get(`https://api.github.com/users/${username}/repos?sort=updated`)
       .then(function (response) {
         self.setState({
