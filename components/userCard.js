@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './userCard.css'
 import ReposList from "./ReposList/reposList";
+import Location from "./Location/location";
 
 const axios = require('axios');
 
@@ -9,10 +10,14 @@ class UserCard extends Component {
     state = {
         users: [],
         urlRepo: '',
+      showModal: false,
+      showLocation: false,
+      username: '',
+      location: '',
     };
 
     componentDidMount() {
-        axios.get('https://api.github.com/repos/angular/angular/contributors?page=1&per_page=25')
+        axios.get('https://api.github.com/repos/angular/angular/contributors?page=2&per_page=25')
             .then(res => {
                 this.setState({
                     users: res.data,
@@ -48,6 +53,14 @@ class UserCard extends Component {
   hideModal = () => {
     this.setState({ username: '', showModal: false });
   };
+  showLocation = (location) => {
+    this.setState({ location: location, showLocation: true });
+  };
+  
+  hideLocation = () => {
+    this.setState({ location: '', showLocation: false });
+  };
+  
   
   
   getLocation = (user) => {
@@ -58,7 +71,7 @@ class UserCard extends Component {
     };
 
     render() {
-        console.log(this.state.users)
+        // console.log(this.state.users)
         return (
             <div className='card__wrapper'>
                 {this.state.users.length > 0
@@ -71,7 +84,7 @@ class UserCard extends Component {
                                             <img src={card.avatar_url} alt="developer" className="card_img"/>
                                             <span>@github</span>
                                         </div>
-                                        <div className="card_top-right">
+                                        <div className="card_top-right" onClick={() => this.showLocation(card.location)}>
                                             <img src="/image/compas.png" alt="location"/>
                                         </div>
                                     </div>
@@ -88,6 +101,9 @@ class UserCard extends Component {
                     }) : ""}
               {
                 this.state.showModal && <ReposList hideModal={this.hideModal} username={this.state.username}/>
+              }
+              {
+                this.state.showLocation && <Location hideLocation={this.hideLocation} location={this.state.location}/>
               }
             </div>
         );
